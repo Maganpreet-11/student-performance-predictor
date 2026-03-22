@@ -91,7 +91,8 @@ student-performance-predictor/
 
 ### 📊 Training Data
 
-![Training](Images/Train%20Output.png)
+<img width="562" height="455" alt="image" src="https://github.com/user-attachments/assets/237bf4ef-7395-45af-8f1e-62fd3919fa99" />
+
 
 ### 📊 Testing Data
 
