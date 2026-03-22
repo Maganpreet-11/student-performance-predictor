@@ -1,24 +1,37 @@
-﻿# 🎓 Student Performance Predictor
+# 🎓 Student Performance Predictor
+
+## 🌐 Live App
+
+👉 https://student-performance-predictor-gnfbl3d8lu6qweac9wyrcx.streamlit.app/
+
+---
 
 ## 🚀 Overview
 
-This project predicts student exam scores based on key academic and lifestyle factors:
+This project predicts a student's exam score based on key academic and lifestyle factors using Machine Learning.
 
-* Study hours
-* Sleep hours
-* Attendance percentage
-* Previous academic performance
-
-It uses a **Linear Regression model** and provides real-time predictions through a **Streamlit web app**.
+It transforms raw student data into meaningful insights and provides real-time predictions through an interactive web application built with **Streamlit**.
 
 ---
 
 ## 🧠 Problem Statement
 
-Students often struggle to understand how their habits impact performance.
-This project aims to:
+Students often struggle to understand how their daily habits impact academic performance.
 
-> Turn student data into actionable insights using machine learning.
+This project helps answer:
+
+> *“How do study hours, sleep, attendance, and past performance affect my score?”*
+
+---
+
+## ⚙️ Tech Stack
+
+* **Python**
+* **Pandas**
+* **NumPy**
+* **Scikit-learn**
+* **Matplotlib**
+* **Streamlit**
 
 ---
 
@@ -27,90 +40,68 @@ This project aims to:
 ```
 student-performance-predictor/
 │
-├── data/
+├── Data/
 │   └── student_exam_scores.csv
 │
-├── images/
-│   ├── train_plot.png
-│   └── test_plot.png
+├── Images/
+│   ├── Train Output.png
+│   └── Test Output.png
 │
-├── model/
-│   └── model.ipynb
-│
-├── prediction/
-│   └── predict.py
+├── Model/
+│   ├── model.ipynb
+│   └── model.pkl
 │
 ├── app.py
-├── model.pkl
 ├── requirements.txt
 ├── README.md
-└── .gitignore
 ```
-
----
-
-## ⚙️ Tech Stack
-
-* **Python**
-* **Pandas** (data handling)
-* **Scikit-learn** (model training)
-* **NumPy**
-* **Matplotlib** (visualization)
-* **Streamlit** (web app)
 
 ---
 
 ## 📊 Model Details
 
-* Algorithm: **Linear Regression**
-* R² Score: **~85%**
-* Mean Absolute Error (MAE): **~2.3 marks**
-* Root Mean Squared Error (RMSE): **~2.7 marks**
+* **Algorithm:** Linear Regression
+* **R² Score:** ~85%
+* **MAE:** ~2.3 marks
+* **RMSE:** ~2.7 marks
 
-👉 The model shows strong generalization with minimal difference between training and testing performance.
-
----
-
-## 📈 Results
-
-* Predictions are accurate within **±2.5 marks**
-* Model maintains stable performance on unseen data
-* Clear linear relationship between inputs and output
+👉 The model shows strong generalization and consistent performance on unseen data.
 
 ---
 
-## 📸 Visualizations
+## 📈 Features
 
-### Training Data
-![alt text](<Images/Train Outpu.png>)
-
-
-### Testing Data
-![alt text](<Images/Test Output.png>)
-
-
----
-
-## 🔍 Key Insights
-
-* Previous academic performance has a strong influence on final scores
-* Study hours and attendance significantly impact outcomes
-* Model behavior is stable and consistent across different inputs
+* 🎯 Real-time score prediction
+* 📊 Simple and interactive UI
+* 🔒 Input validation for reliable results
+* 💡 Smart feedback based on predicted score
 
 ---
 
 ## 🧪 Sample Prediction
 
-| Study | Sleep | Attendance | Previous | Predicted Score |
-| ----- | ----- | ---------- | -------- | --------------- |
-| 6 hrs | 7 hrs | 85%        | 80       | ~37             |
-| 8 hrs | 7 hrs | 95%        | 90       | ~43             |
+| Study Hours | Sleep | Attendance | Previous Score | Predicted |
+| ----------- | ----- | ---------- | -------------- | --------- |
+| 6 hrs       | 7 hrs | 85%        | 80             | ~37       |
+| 8 hrs       | 7 hrs | 95%        | 90             | ~43       |
 
 ---
 
-## ▶️ How to Run Locally
+## 📸 Visualizations
 
-### 1. Clone the repository
+### 📊 Training Data
+
+![Training](Images/Train%20Output.png)
+
+### 📊 Testing Data
+
+![Testing](Images/Test%20Output.png)
+
+---
+
+## ▶️ Run Locally
+
+### 1. Clone repository
 
 ```
 git clone https://github.com/YOUR_USERNAME/student-performance-predictor.git
@@ -123,40 +114,48 @@ cd student-performance-predictor
 pip install -r requirements.txt
 ```
 
-### 3. Run the app
+### 3. Run app
 
 ```
-python -m streamlit run ui/app.py
+streamlit run app.py
 ```
 
 ---
 
-## 🌐 Future Improvements
+## 🔍 Key Insights
 
-* Add feature importance visualization
-* Improve UI/UX design
-* Use advanced models (Random Forest, XGBoost)
-* Deploy live web app
+* Previous performance has the highest impact on final score
+* Study hours and attendance significantly influence results
+* Sleep plays a moderate but important role
+
+---
+
+## 🌟 Future Improvements
+
+* 📊 Add interactive graphs and insights
+* 🤖 Use advanced models (Random Forest, XGBoost)
+* 🎨 Improve UI/UX design
+* 📈 Feature importance visualization
 
 ---
 
 ## 💡 What I Learned
 
 * End-to-end ML workflow (data → model → deployment)
-* Model evaluation and interpretation
-* Building interactive ML apps using Streamlit
-* Writing modular and maintainable code
+* Model evaluation and performance metrics
+* Building and deploying ML apps using Streamlit
+* Debugging real-world deployment issues
 
 ---
 
 ## 🔥 Conclusion
 
-This project demonstrates how machine learning can be used to:
+This project demonstrates how machine learning can:
 
-> Transform raw student data into meaningful predictions and insights.
+> Transform simple student data into actionable predictions and insights.
 
 ---
 
 ## 📬 Contact
 
-Feel free to connect or give feedback!
+Feel free to connect and give feedback!
