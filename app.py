@@ -1,32 +1,35 @@
-import streamlit as st
-import pickle
-import os
-
 import os
 import pickle
 import streamlit as st
 
+# ==============================
+# 🔁 Load Model (Silent + Safe)
+# ==============================
 @st.cache_resource
 def load_model():
-    try:
-        base_dir = os.path.dirname(__file__)
-        model_path = os.path.join(base_dir, "..", "model", "model.pkl")
-        model_path = os.path.abspath(model_path)
+    base_dir = os.path.dirname(__file__)
 
-        with open(model_path, "rb") as file:
-            return pickle.load(file)
+    possible_paths = [
+        os.path.join(base_dir, "model.pkl"),
+        os.path.join(base_dir, "..", "model.pkl"),
+        os.path.join(base_dir, "..", "model", "model.pkl"),
+    ]
 
-    except FileNotFoundError:
-        st.error(f"❌ Model not found at: {model_path}")
-        return None
+    for path in possible_paths:
+        path = os.path.abspath(path)
+        if os.path.exists(path):
+            with open(path, "rb") as file:
+                return pickle.load(file)
+
+    return None  # silent fail
 
 model = load_model()
+
 # ==============================
 # 🎯 Prediction Function
 # ==============================
 def predict_score(hours_studied, sleep_hours, attendance_percent, previous_scores):
     
-    # Input validation
     if not (0 <= hours_studied <= 24):
         st.error("Study hours must be between 0 and 24")
         return None
@@ -44,12 +47,12 @@ def predict_score(hours_studied, sleep_hours, attendance_percent, previous_score
         return None
 
     input_data = [[hours_studied, sleep_hours, attendance_percent, previous_scores]]
-    
     prediction = model.predict(input_data)[0]
+
     return round(prediction, 2)
 
 # ==============================
-# 💬 Feedback Function
+# 💬 Feedback
 # ==============================
 def get_feedback(score):
     if score >= 40:
@@ -60,28 +63,23 @@ def get_feedback(score):
         return "⚠️ Needs improvement"
 
 # ==============================
-# 🎨 UI Section
+# 🎨 UI
 # ==============================
 st.set_page_config(page_title="Student Predictor", layout="centered")
 
 st.title("🎓 Student Performance Predictor")
 st.markdown("Predict your exam score based on your habits.")
 
-# Inputs
-hours = st.number_input("📚 Study Hours", min_value=0.0, max_value=24.0, step=0.5)
-sleep = st.number_input("😴 Sleep Hours", min_value=0.0, max_value=24.0, step=0.5)
-attendance = st.number_input("📊 Attendance (%)", min_value=0.0, max_value=100.0, step=1.0)
-previous = st.number_input("📈 Previous Score", min_value=0.0, max_value=100.0, step=1.0)
+hours = st.number_input("📚 Study Hours", 0.0, 24.0, step=0.5)
+sleep = st.number_input("😴 Sleep Hours", 0.0, 24.0, step=0.5)
+attendance = st.number_input("📊 Attendance (%)", 0.0, 100.0, step=1.0)
+previous = st.number_input("📈 Previous Score", 0.0, 100.0, step=1.0)
 
-# Predict Button
 if st.button("Predict"):
-    if model is not None:
-        score = predict_score(hours, sleep, attendance, previous)
-        
-        if score is not None:
-            feedback = get_feedback(score)
-
-            st.success(f"🎯 Predicted Score: {score}")
-            st.info(feedback)
+    if model is None:
+        st.error("Model not found. Please check deployment.")
     else:
-        st.warning("Model is not loaded. Fix the issue and retry.")
+        score = predict_score(hours, sleep, attendance, previous)
+        if score is not None:
+            st.success(f"🎯 Predicted Score: {score}")
+            st.info(get_feedback(score))
