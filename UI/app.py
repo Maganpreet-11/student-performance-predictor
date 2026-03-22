@@ -1,5 +1,5 @@
 import streamlit as st
-from project import predict_score, get_feedback
+from Prediction.project import predict_score, get_feedback
 
 st.title("🎓 Student Performance Predictor")
 

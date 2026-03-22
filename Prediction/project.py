@@ -2,7 +2,7 @@ import pickle
 
 # Load model safely
 try:
-    with open("model.pkl", "rb") as file:
+    with open("model/model.pkl", "rb") as file:
         model = pickle.load(file)
 except FileNotFoundError:
     raise Exception("Model file not found. Check path: model/model.pkl")
